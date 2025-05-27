@@ -104,12 +104,14 @@ class AplikasiTkinter:
         self.label_a.config(text=f"Team A: {self.skor_a}")
 
     def kurang_1_a(self):
-        self.skor_a -= 1
-        self.label_a.config(text=f"Team A: {self.skor_a}")
+        if self.skor_a >= 1:
+            self.skor_a -= 1
+            self.label_a.config(text=f"Team A: {self.skor_a}")
 
     def kurang_3_a(self):
-        self.skor_a -= 3
-        self.label_a.config(text=f"Team A: {self.skor_a}")
+       if self.skor_a >= 3:
+            self.skor_a -= 3
+            self.label_a.config(text=f"Team A: {self.skor_a}")
 
     def tambah_1_b(self):
         self.skor_b += 1
@@ -120,13 +122,15 @@ class AplikasiTkinter:
         self.label_b.config(text=f"Team B: {self.skor_b}")
 
     def kurang_1_b(self):
-        self.skor_a -= 1
-        self.label_a.config(text=f"Team B: {self.skor_a}")
+        if self.skor_b >= 1:
+            self.skor_b -= 1
+            self.label_b.config(text=f"Team B: {self.skor_b}")
 
     def kurang_3_b(self):
-        self.skor_a -= 3
-        self.label_a.config(text=f"Team B: {self.skor_a}")
-
+       if self.skor_b >= 3:
+            self.skor_b -= 3
+            self.label_b.config(text=f"Team B: {self.skor_b}")
+  
     def reset(self):
         self.skor_a = 0
         self.skor_b = 0
