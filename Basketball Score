@@ -6,7 +6,7 @@ class AplikasiTkinter:
         self.root = root
         self.root.title("Basketball Score")
         self.root.geometry("500x500")
-        self.root.resizable(True, True)
+        self.root.resizable(True, True)#(False, False) 
 
         self.skor_a = 0
         self.skor_b = 0
@@ -14,8 +14,8 @@ class AplikasiTkinter:
         self.frame_awal = tk.Frame(self.root)
         self.frame_awal.place(relx=0.5, rely=0.5, anchor="center")
 
-        self.label_judul = tk.Label(self.frame_awal, text="Selamat Datang di Basketball Score", font=("Helvetica", 14))
-        self.label_judul.pack(pady=10)
+        self.label_judul = tk.Label(self.frame_awal, text="Selamat Datang di Basketball Score", font=("Helvetica", 14),) 
+        self.label_judul.pack(padx=0, pady=10)
 
         self.btn_mulai = tk.Button(self.frame_awal, text="Start", width=20, height=2, command=self.mulai_aplikasi)
         self.btn_mulai.pack(pady=10)
@@ -28,21 +28,50 @@ class AplikasiTkinter:
 
         self.frame_skor = tk.Frame(self.root)
 
-        self.label_a = tk.Label(self.frame_skor, text="Team A: 0", font=("Helvetica", 20))
-        self.label_a.pack(padx=5, pady=10)
+        #Tim A
+        self.frame_a = tk.Frame(self.frame_skor)
+        self.frame_a.pack(side="left", padx=30, pady=10)
 
-        tk.Button(self.frame_skor, text="+1 A", command=self.tambah_1_a).pack(padx=50, pady=5)
-        tk.Button(self.frame_skor, text="+3 A", command=self.tambah_3_a).pack(padx=5, pady=5)
+        self.label_a = tk.Label(self.frame_a, text="Team A: 0", font=("Helvetica", 20))
+        self.label_a.pack(pady=10)
 
-        self.label_b = tk.Label(self.frame_skor, text="Team B: 0", font=("Helvetica", 20))
+        frame_btn_1a = tk.Frame(self.frame_a)
+        frame_btn_1a.pack(pady=5)
+        tk.Button(frame_btn_1a, text="+1", width=5, command=self.tambah_1_a).pack(side="left", padx=2)
+        tk.Button(frame_btn_1a, text="-1", width=5, command=self.kurang_1_a).pack(side="left", padx=2)
+
+        frame_btn_3a = tk.Frame(self.frame_a)
+        frame_btn_3a.pack(pady=5)
+        tk.Button(frame_btn_3a, text="+3", width=5, command=self.tambah_3_a).pack(side="left", padx=2)
+        tk.Button(frame_btn_3a, text="-3", width=5, command=self.kurang_3_a).pack(side="left", padx=2)
+
+
+        #Tim B
+        self.frame_b = tk.Frame(self.frame_skor)
+        self.frame_b.pack(side="right", padx=30, pady=10)
+
+        self.label_b = tk.Label(self.frame_b, text="Team B: 0", font=("Helvetica", 20))
         self.label_b.pack(pady=10)
 
-        tk.Button(self.frame_skor, text="+1 B", command=self.tambah_1_b).pack(pady=5)
-        tk.Button(self.frame_skor, text="+3 B", command=self.tambah_3_b).pack(pady=5)
+        frame_btn_1b = tk.Frame(self.frame_b)
+        frame_btn_1b.pack(pady=5)
+        tk.Button(frame_btn_1b, text="+1", width=5, command=self.tambah_1_b).pack(side="left", padx=2)
+        tk.Button(frame_btn_1b, text="-1", width=5, command=self.kurang_1_b).pack(side="left", padx=2)
 
-        tk.Button(self.frame_skor, text="Reset", command=self.reset).pack(pady=10)
-        tk.Button(self.frame_skor, text="Simpan Skor", command=self.simpan_skor).pack(pady=10)
-        tk.Button(self.frame_skor, text="Kembali", command=self.kembali_ke_awal).pack(pady=10)
+        frame_btn_3b = tk.Frame(self.frame_b)
+        frame_btn_3b.pack(pady=5)
+        tk.Button(frame_btn_3b, text="+3", width=5, command=self.tambah_3_b).pack(side="left", padx=2)
+        tk.Button(frame_btn_3b, text="-3", width=5, command=self.kurang_3_b).pack(side="left", padx=2)
+
+
+        #Tombol
+        self.frame_tombol = tk.Frame(self.frame_skor)
+        self.frame_tombol.pack(side="bottom", pady=20)
+
+        tk.Button(self.frame_tombol, text="Reset", command=self.reset).pack(pady=5)
+        tk.Button(self.frame_tombol, text="Simpan Skor", command=self.simpan_skor).pack(pady=5)
+        tk.Button(self.frame_tombol, text="Kembali", command=self.kembali_ke_awal).pack(pady=5)
+
 
         self.frame_developer = tk.Frame(self.root)
         self.label_developer = tk.Label(self.frame_developer, text="Dibuat oleh Kelompok 7", font=("Helvetica", 14))
@@ -74,6 +103,14 @@ class AplikasiTkinter:
         self.skor_a += 3
         self.label_a.config(text=f"Team A: {self.skor_a}")
 
+    def kurang_1_a(self):
+        self.skor_a -= 1
+        self.label_a.config(text=f"Team A: {self.skor_a}")
+
+    def kurang_3_a(self):
+        self.skor_a -= 3
+        self.label_a.config(text=f"Team A: {self.skor_a}")
+
     def tambah_1_b(self):
         self.skor_b += 1
         self.label_b.config(text=f"Team B: {self.skor_b}")
@@ -81,6 +118,14 @@ class AplikasiTkinter:
     def tambah_3_b(self):
         self.skor_b += 3
         self.label_b.config(text=f"Team B: {self.skor_b}")
+
+    def kurang_1_b(self):
+        self.skor_a -= 1
+        self.label_a.config(text=f"Team B: {self.skor_a}")
+
+    def kurang_3_b(self):
+        self.skor_a -= 3
+        self.label_a.config(text=f"Team B: {self.skor_a}")
 
     def reset(self):
         self.skor_a = 0
